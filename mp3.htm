@@ -1,0 +1,21 @@
+﻿<style>
+body{margin:0}
+#audio{position:fixed;left:0;bottom:0;width:100%}
+h2{cursor:pointer}
+</style>
+<center>
+<br><br>
+<h1>随机音乐</h1>
+<br>
+<h2 id=next>下一曲 ⏩</h2>
+<audio id=audio autoplay controls></audio>
+<script>
+if(top.location==self.location){window.location.href="/"};
+s=new Array(1);
+s[0]="热歌榜";
+(function(window,document){var get=function(id){return document.getElementById(id)};
+var bind=function(element,event,callback){return element.addEventListener(event,callback)};
+var auto=true;var audio=get("audio");var randomm=function(){audio.src="//api.uomg.com/api/rand.music?sort="+s[Math.floor(Math.random()*s.length)]+"&"+Math.random()};
+bind(get("next"),"click",randomm);bind(audio,"error",function(){randomm()});bind(audio,"ended",function(){if(auto){randomm()}});randomm();
+})(window,document);audio.volume=.6;
+</script>
